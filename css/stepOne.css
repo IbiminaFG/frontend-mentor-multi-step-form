@@ -1,0 +1,98 @@
+#step-one {
+  min-width: 600px;
+  padding: 40px 90px;
+  /* display: none; */
+}
+
+#step-one form {
+  display: flex;
+  flex-direction: column;
+}
+
+#step-one form h1 {
+  /* font-family: ubuntu-bold;
+  color: var(--Marine-blue); */
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+#step-one form p {
+  /* color: var(--Cool-gray);
+  font-family: ubuntu-regular; */
+  margin: 0;
+}
+
+.inputs-and-btn {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 400px;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+}
+
+.input div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.input > div > p {
+  color: var(--Strawberry-red);
+  font-family: ubuntu-medium;
+  visibility: hidden;
+}
+
+.un-hide > div > p {
+  visibility: visible;
+}
+
+.input label {
+  font-family: ubuntu-bold;
+  color: var(--Marine-blue);
+  font-size: 0.8rem;
+}
+
+input {
+  height: 40px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 1px solid var(--Cool-gray);
+  padding-left: 10px;
+  padding-right: 10px;
+  outline: none;
+  font-family: ubuntu-medium;
+  color: var(--Marine-blue);
+  background-color: var(--White);
+}
+
+#step-one input:focus {
+  border: 1px solid var(--Purplish-blue);
+}
+
+input::placeholder {
+  font-family: ubuntu-medium;
+  color: var(--Cool-gray);
+}
+
+.btn {
+  display: grid;
+}
+
+button {
+  justify-self: flex-end;
+  width: 120px;
+  height: 45px;
+  text-align: center;
+  border-radius: 5px;
+  background-color: var(--Marine-blue);
+  border: none;
+  color: var(--White);
+  font-family: ubuntu-bold;
+  cursor: pointer;
+}

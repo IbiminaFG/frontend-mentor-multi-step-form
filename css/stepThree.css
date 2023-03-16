@@ -1,0 +1,47 @@
+#step-three {
+  min-width: 600px;
+  padding: 40px 90px;
+  display: none;
+}
+
+#step-three > form {
+  height: 410px;
+}
+
+#step-three h1 {
+  margin-bottom: 5px;
+}
+
+.checkboxes {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.checkboxes > div {
+  display: flex;
+  border: 1px solid var(--Light-gray);
+  border-radius: 10px;
+  align-items: center;
+  padding: 15px;
+}
+
+.checkboxes > div > input {
+  height: 15px;
+  width: 15px;
+  margin: 0 20px 0 0;
+}
+
+.checkboxes > div > p {
+  margin-left: auto;
+  color: var(--Purplish-blue);
+  font-size: 14px;
+}
+
+.checkboxes > div > div > p {
+  margin: 0;
+}
+
+#step-three > form > .inputs {
+  margin-top: auto;
+}

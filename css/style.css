@@ -1,0 +1,128 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  /* Primary */
+
+  --Marine-blue: hsl(213, 96%, 18%);
+  --Purplish-blue: hsl(243, 100%, 62%);
+  --Pastel-blue: hsl(228, 100%, 84%);
+  --Light-blue: hsl(206, 94%, 87%);
+  --Strawberry-red: hsl(354, 84%, 57%);
+
+  /* Neutral */
+
+  --Cool-gray: hsl(231, 11%, 63%);
+  --Light-gray: hsl(229, 24%, 87%);
+  --Magnolia: hsl(217, 100%, 97%);
+  --Alabaster: hsl(231, 100%, 99%);
+  --White: hsl(0, 0%, 100%);
+}
+
+@font-face {
+  font-family: ubuntu-bold;
+  src: url(../assets/fonts/Ubuntu-Bold.ttf);
+}
+
+@font-face {
+  font-family: ubuntu-medium;
+  src: url(../assets/fonts/Ubuntu-Medium.ttf);
+}
+
+@font-face {
+  font-family: ubuntu-regular;
+  src: url(../assets/fonts/Ubuntu-Regular.ttf);
+}
+
+body {
+  background-color: var(--Light-blue);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  font-family: ubuntu-bold;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--Marine-blue);
+}
+
+p {
+  font-family: ubuntu-medium;
+  color: var(--Light-gray);
+}
+
+main {
+  background-color: var(--White);
+  display: flex;
+  padding: 20px 0 20px 20px;
+  border-radius: 10px;
+  /* font-family: ubuntu-regular; */
+}
+
+aside {
+  color: var(--White);
+  background-image: url(../assets/images/bg-sidebar-desktop.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 10px;
+  padding: 30px;
+}
+
+aside > .container {
+  height: 500px;
+  width: 180px;
+}
+
+aside .step p,
+aside .step h4 {
+  margin: 0;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.sn {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--Light-gray);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--Light-gray);
+  margin-right: 15px;
+  font-family: ubuntu-medium;
+}
+
+p.light {
+  font-family: ubuntu-regular;
+  color: var(--Cool-gray);
+}
+
+.bold {
+  font-family: ubuntu-medium;
+}
+
+.active {
+  background-color: var(--Pastel-blue);
+  border: 1px solid var(--Pastel-blue);
+  color: var(--Marine-blue);
+}
+
+.steps {
+  display: flex;
+}
+
+.back:hover {
+  color: var(--Marine-blue);
+}

@@ -1,0 +1,49 @@
+#step-four {
+  min-width: 600px;
+  padding: 40px 90px;
+  display: none;
+  flex-direction: column;
+}
+
+#step-four h1 {
+  margin-bottom: 5px;
+}
+
+div.p-20 {
+  padding: 20px;
+}
+
+div.bg {
+  background-color: var(--Alabaster);
+}
+
+.selected-plan {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.selected-pick-add-ons > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.selected-pick-add-ons > div > p:nth-child(2) {
+  color: var(--Marine-blue);
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#step-four h3 {
+  font-family: ubuntu-medium;
+  color: var(--Purplish-blue);
+}
+
+button.purplish-blue {
+  background-color: var(--Purplish-blue);
+}

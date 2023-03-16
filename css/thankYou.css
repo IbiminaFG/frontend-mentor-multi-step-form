@@ -1,0 +1,15 @@
+#thank-you {
+  width: 600px;
+  padding: 40px 90px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+#thank-you > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}

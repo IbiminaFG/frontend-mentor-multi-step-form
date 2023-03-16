@@ -1,0 +1,136 @@
+#step-two {
+  min-width: 600px;
+  padding: 40px 90px;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#step-two h1 {
+  margin-bottom: 5px;
+}
+
+.info p {
+  margin-bottom: 30px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+#step-two > form {
+  height: 410px;
+}
+
+.plan-cards {
+  display: flex;
+  justify-content: space-between;
+}
+
+.plan-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 10px;
+  width: 130px;
+  gap: 30px;
+  padding: 20px;
+  border: 1px solid var(--Light-gray);
+  cursor: pointer;
+}
+
+.plan-card:hover {
+  border: 1px solid var(--Purplish-blue);
+}
+
+.plan-card img {
+  width: 40px;
+}
+
+h4 {
+  margin: 5px 0;
+  font-family: ubuntu-medium;
+  color: var(--Marine-blue);
+}
+
+.plan-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.plan-info p {
+  margin: 0;
+}
+
+.active-plan {
+  border: 2px solid var(--Purplish-blue);
+  background-color: var(--Alabaster);
+}
+
+.slider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--Alabaster);
+  margin-top: 30px;
+  margin-bottom: 40px;
+  border-radius: 5px;
+  padding: 15px;
+}
+
+.slider p {
+  margin: 0;
+}
+
+.active-slide {
+  color: var(--Marine-blue);
+}
+
+.slide-box {
+  width: 30px;
+  height: 20px;
+  background-color: var(--Marine-blue);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: content-box;
+  padding-left: 3px;
+  padding-right: 3px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.slide-circle {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--White);
+}
+
+div.inputs {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.inputs button {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 20px;
+  border-radius: 5px;
+  background-color: var(--Marine-blue);
+  border: none;
+  color: var(--White);
+  font-family: ubuntu-bold;
+  cursor: pointer;
+}
+
+button.back {
+  background-color: var(--White);
+  color: var(--Light-gray);
+}
