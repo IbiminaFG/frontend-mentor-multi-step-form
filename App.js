@@ -18,16 +18,18 @@ const stepTwoNumber = document.querySelector(".step2 .sn");
 const stepThreeNumber = document.querySelector(".step3 .sn");
 const stepFourNumber = document.querySelector(".step4 .sn");
 
-const planCardOne = document.querySelector(".pc1");
-const planCardTwo = document.querySelector(".pc2");
-const planCardThree = document.querySelector(".pc3");
+//plancard elements
 const planCards = document.querySelectorAll(".plan-card");
+
+//slider element
+const sliderElement = document.querySelector(".slider");
 
 const planDetails = {
   plan: null,
   kind: null,
   price: null,
 };
+let val = false;
 
 //plancards
 
@@ -39,9 +41,42 @@ planCards.forEach((plan) => {
     const planPrice = plan.querySelector("p");
     planDetails.plan = planName.innerText;
     planDetails.price = planPrice.innerText;
-    console.log(planDetails);
   });
 });
+
+//slider
+
+sliderElement.addEventListener("click", () => {
+  val = !val;
+  if (val) {
+    document.querySelector(".monthly").classList.remove("active-slide");
+    document.querySelector(".yearly").classList.add("active-slide");
+    document.querySelector(".slide-box").classList.add("move-circle");
+  } else {
+    document.querySelector(".monthly").classList.add("active-slide");
+    document.querySelector(".yearly").classList.remove("active-slide");
+    document.querySelector(".slide-box").classList.remove("move-circle");
+  }
+  const planKind = document.querySelector(".active-slide");
+  switchPrice(val);
+  planDetails.kind = planKind.innerText;
+  console.log(planDetails);
+});
+
+function switchPrice(v) {
+  const yearlyPrice = [90, 120, 150];
+  const monthlyPrice = [9, 12, 15];
+  const prices = document.querySelectorAll(".plan-priced");
+  if (v) {
+    prices[0].innerHTML = `$${yearlyPrice[0]}/yr`;
+    prices[1].innerHTML = `$${yearlyPrice[1]}/yr`;
+    prices[2].innerHTML = `$${yearlyPrice[2]}/yr`;
+  } else {
+    prices[0].innerHTML = `$${monthlyPrice[0]}/mo`;
+    prices[1].innerHTML = `$${monthlyPrice[1]}/mo`;
+    prices[2].innerHTML = `$${monthlyPrice[2]}/mo`;
+  }
+}
 
 stepOneForm.addEventListener("submit", (e) => {
   e.preventDefault();
