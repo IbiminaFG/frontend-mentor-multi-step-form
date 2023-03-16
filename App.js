@@ -21,32 +21,26 @@ const stepFourNumber = document.querySelector(".step4 .sn");
 const planCardOne = document.querySelector(".pc1");
 const planCardTwo = document.querySelector(".pc2");
 const planCardThree = document.querySelector(".pc3");
+const planCards = document.querySelectorAll(".plan-card");
 
-planCardOne.addEventListener("click", () => {
-  planCardOne.classList.toggle("active-plan");
-  planCardTwo.classList.remove("active-plan");
-  planCardThree.classList.remove("active-plan");
-  if (planCardOne.classList.contains("active-plan")) {
-    console.log(planCardOne);
-  }
-});
+const planDetails = {
+  plan: null,
+  kind: null,
+  price: null,
+};
 
-planCardTwo.addEventListener("click", () => {
-  planCardTwo.classList.toggle("active-plan");
-  planCardOne.classList.remove("active-plan");
-  planCardThree.classList.remove("active-plan");
-  if (planCardTwo.classList.contains("active-plan")) {
-    console.log(planCardTwo);
-  }
-});
+//plancards
 
-planCardThree.addEventListener("click", () => {
-  planCardThree.classList.toggle("active-plan");
-  planCardOne.classList.remove("active-plan");
-  planCardTwo.classList.remove("active-plan");
-  if (planCardThree.classList.contains("active-plan")) {
-    console.log(planCardThree);
-  }
+planCards.forEach((plan) => {
+  plan.addEventListener("click", () => {
+    document.querySelector(".active-plan").classList.remove("active-plan");
+    plan.classList.add("active-plan");
+    const planName = plan.querySelector("h4");
+    const planPrice = plan.querySelector("p");
+    planDetails.plan = planName.innerText;
+    planDetails.price = planPrice.innerText;
+    console.log(planDetails);
+  });
 });
 
 stepOneForm.addEventListener("submit", (e) => {
