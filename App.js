@@ -1,6 +1,10 @@
 const stepOneForm = document.querySelector("#step-one form");
 const stepOneInputs = document.querySelectorAll("#step-one input");
 
+const stepTwoForm = document.querySelector("#step-two form");
+const stepTwoNextButton = document.querySelector("#step-two .next-step");
+const stepTwoBackButton = document.querySelector("#step-two .back");
+
 //The different inputs in step-one-form
 const stepOneNameInput = document.querySelector("#step-one #name");
 const stepOneEmailInput = document.querySelector("#step-one #email");
@@ -99,4 +103,20 @@ stepOneForm.addEventListener("submit", (e) => {
     stepOneNumber.classList.remove("active");
     stepTwoNumber.classList.add("active");
   }
+});
+
+stepTwoForm.addEventListener("submit", (e) => e.preventDefault());
+
+stepTwoNextButton.addEventListener("click", () => {
+  sectionTwoElement.style.display = "none";
+  sectionThreeElement.style.display = "block";
+  stepTwoNumber.classList.remove("active");
+  stepThreeNumber.classList.add("active");
+});
+
+stepTwoBackButton.addEventListener("click", () => {
+  sectionTwoElement.style.display = "none";
+  sectionOneElement.style.display = "block";
+  stepTwoNumber.classList.remove("active");
+  stepOneNumber.classList.add("active");
 });
