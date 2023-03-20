@@ -26,6 +26,11 @@
   padding: 15px;
 }
 
+.checkboxes > div.picked {
+  border: 1px solid var(--Purplish-blue);
+  background-color: var(--Alabaster);
+}
+
 .checkboxes > div > input {
   height: 15px;
   width: 15px;

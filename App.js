@@ -5,6 +5,10 @@ const stepTwoForm = document.querySelector("#step-two form");
 const stepTwoNextButton = document.querySelector("#step-two .next-step");
 const stepTwoBackButton = document.querySelector("#step-two .back");
 
+const stepThreeForm = document.querySelector("#step-three form");
+const stepThreeNextButton = document.querySelector("#step-three .next-step");
+const stepThreeBackButton = document.querySelector("#step-three .back");
+
 //The different inputs in step-one-form
 const stepOneNameInput = document.querySelector("#step-one #name");
 const stepOneEmailInput = document.querySelector("#step-one #email");
@@ -28,11 +32,18 @@ const planCards = document.querySelectorAll(".plan-card");
 //slider element
 const sliderElement = document.querySelector(".slider");
 
+//add-on elements
+const addOnElements = document.querySelectorAll(".add-on");
+
+const selectedPlanToShow = document.querySelector(".selected-plan");
+const selectedAddOnToShow = document.querySelector(".selected-pick-add-ons");
+
 const planDetails = {
   plan: null,
   kind: null,
   price: null,
 };
+const addOnDetails = [];
 let val = false;
 
 //plancards
@@ -64,7 +75,21 @@ sliderElement.addEventListener("click", () => {
   const planKind = document.querySelector(".active-slide");
   switchPrice(val);
   planDetails.kind = planKind.innerText;
-  console.log(planDetails);
+});
+
+//add-on functionality
+
+addOnElements.forEach((addon) => {
+  addon.addEventListener("click", () => {
+    let checkedValue = addon.querySelector("input").checked;
+    if (checkedValue) {
+      addon.classList.add("picked");
+      checkedValue = false;
+    } else {
+      addon.classList.remove("picked");
+      checkedValue = true;
+    }
+  });
 });
 
 function switchPrice(v) {
@@ -106,6 +131,7 @@ stepOneForm.addEventListener("submit", (e) => {
 });
 
 stepTwoForm.addEventListener("submit", (e) => e.preventDefault());
+stepThreeForm.addEventListener("submit", (e) => e.preventDefault());
 
 stepTwoNextButton.addEventListener("click", () => {
   sectionTwoElement.style.display = "none";
@@ -120,3 +146,27 @@ stepTwoBackButton.addEventListener("click", () => {
   stepTwoNumber.classList.remove("active");
   stepOneNumber.classList.add("active");
 });
+
+//Step three
+stepThreeNextButton.addEventListener("click", () => {
+  sectionThreeElement.style.display = "none";
+  sectionFourElement.style.display = "flex";
+  stepThreeNumber.classList.remove("active");
+  stepFourNumber.classList.add("active");
+  showSelectedPlan();
+});
+
+stepTwoBackButton.addEventListener("click", () => {
+  sectionThreeElement.style.display = "none";
+  sectionTwoElement.style.display = "flex";
+  stepThreeNumber.classList.remove("active");
+  stepTwoNumber.classList.add("active");
+});
+
+function showSelectedPlan() {
+  selectedPlanToShow.innerHTML = `<div>
+  <h4>${planDetails.plan}(${planDetails.kind})</h4>
+  <a href="#">change</a>
+</div>
+<h4>${planDetails.price}</h4>`;
+}
