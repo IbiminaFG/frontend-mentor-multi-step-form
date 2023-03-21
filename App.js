@@ -38,6 +38,12 @@ const addOnElements = document.querySelectorAll(".add-on");
 const selectedPlanToShow = document.querySelector(".selected-plan");
 const selectedAddOnToShow = document.querySelector(".selected-pick-add-ons");
 
+//Summary page
+const planPrice = document.querySelector(".plan-price");
+
+//total
+const total = document.querySelector(".total h3");
+
 const planDetails = {
   plan: null,
   kind: null,
@@ -45,6 +51,7 @@ const planDetails = {
 };
 const addOnDetails = [];
 let val = false;
+let t;
 
 //plancards
 
@@ -81,8 +88,8 @@ sliderElement.addEventListener("click", () => {
 
 addOnElements.forEach((addon) => {
   addon.addEventListener("click", () => {
-    let checkedValue = addon.querySelector("input").checked;
-    if (checkedValue) {
+    let checkedValue = addon.querySelector("input");
+    if (checkedValue.checked) {
       addon.classList.add("picked");
       checkedValue = false;
     } else {
@@ -100,10 +107,12 @@ function switchPrice(v) {
     prices[0].innerHTML = `$${yearlyPrice[0]}/yr`;
     prices[1].innerHTML = `$${yearlyPrice[1]}/yr`;
     prices[2].innerHTML = `$${yearlyPrice[2]}/yr`;
+    setTime(true);
   } else {
     prices[0].innerHTML = `$${monthlyPrice[0]}/mo`;
     prices[1].innerHTML = `$${monthlyPrice[1]}/mo`;
     prices[2].innerHTML = `$${monthlyPrice[2]}/mo`;
+    setTime(false);
   }
 }
 
@@ -154,6 +163,8 @@ stepThreeNextButton.addEventListener("click", () => {
   stepThreeNumber.classList.remove("active");
   stepFourNumber.classList.add("active");
   showSelectedPlan();
+  showSelectedAddOns();
+  setTotal();
 });
 
 stepTwoBackButton.addEventListener("click", () => {
@@ -168,5 +179,39 @@ function showSelectedPlan() {
   <h4>${planDetails.plan}(${planDetails.kind})</h4>
   <a href="#">change</a>
 </div>
-<h4>${planDetails.price}</h4>`;
+<h4 class="plan-price">${planDetails.price}</h4>`;
+}
+
+function showSelectedAddOns() {
+  const pickedAddOns = document.querySelectorAll(".picked");
+  pickedAddOns.forEach((addOn) => {
+    const addOnName = addOn.querySelector(".add-on-name").innerText;
+    const addOnPrice = addOn.querySelector(".add-on-price").innerText;
+    selectedAddOnToShow.innerHTML += `
+    <div>
+      <p>${addOnName}</p>
+      <p class="shown-add-on-price">${addOnPrice}</p>
+    </div>`;
+  });
+}
+
+function setTotal() {
+  const str = planDetails.price;
+  const res = str.replace(/\D/g, "");
+  const addonPrices = document.querySelectorAll(
+    ".selected-pick-add-ons .shown-add-on-price"
+  );
+
+  let val = 0;
+  for (let i = 0; i < addonPrices.length; i++) {
+    const str = addonPrices[i].innerHTML;
+    const res = str.replace(/\D/g, "");
+
+    val += Number(res);
+  }
+  total.innerHTML = `$${val + Number(res)}/${time ? "yr" : "mo"}`;
+}
+
+function setTime(t) {
+  return (time = t);
 }
