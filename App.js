@@ -9,6 +9,9 @@ const stepThreeForm = document.querySelector("#step-three form");
 const stepThreeNextButton = document.querySelector("#step-three .next-step");
 const stepThreeBackButton = document.querySelector("#step-three .back");
 
+const stepFourNextButton = document.querySelector("#step-four .next-step");
+const stepFourBackButton = document.querySelector("#step-four .back");
+
 //The different inputs in step-one-form
 const stepOneNameInput = document.querySelector("#step-one #name");
 const stepOneEmailInput = document.querySelector("#step-one #email");
@@ -19,6 +22,7 @@ const sectionOneElement = document.querySelector("#step-one");
 const sectionTwoElement = document.querySelector("#step-two");
 const sectionThreeElement = document.querySelector("#step-three");
 const sectionFourElement = document.querySelector("#step-four");
+const thankElement = document.querySelector("#thank-you");
 
 //Aside step
 const stepOneNumber = document.querySelector(".step1 .sn");
@@ -43,13 +47,13 @@ const planPrice = document.querySelector(".plan-price");
 
 //total
 const total = document.querySelector(".total h3");
+const totalTitle = document.querySelector(".total p");
 
 const planDetails = {
-  plan: null,
-  kind: null,
-  price: null,
+  plan: "Arcade",
+  kind: "monthly",
+  price: "$9/mo",
 };
-const addOnDetails = [];
 let val = false;
 let t;
 
@@ -81,6 +85,7 @@ sliderElement.addEventListener("click", () => {
   }
   const planKind = document.querySelector(".active-slide");
   switchPrice(val);
+  switchAddOns(val);
   planDetails.kind = planKind.innerText;
 });
 
@@ -116,6 +121,23 @@ function switchPrice(v) {
   }
 }
 
+function switchAddOns(v) {
+  const yearlyPrice = [10, 20, 20];
+  const monthlyPrice = [1, 2, 2];
+  const addOnPrices = document.querySelectorAll(".add-on-price");
+  if (v) {
+    addOnPrices[0].innerHTML = `$${yearlyPrice[0]}/yr`;
+    addOnPrices[1].innerHTML = `$${yearlyPrice[1]}/yr`;
+    addOnPrices[2].innerHTML = `$${yearlyPrice[2]}/yr`;
+    setTime(true);
+  } else {
+    addOnPrices[0].innerHTML = `$${monthlyPrice[0]}/mo`;
+    addOnPrices[1].innerHTML = `$${monthlyPrice[1]}/mo`;
+    addOnPrices[2].innerHTML = `$${monthlyPrice[2]}/mo`;
+    setTime(false);
+  }
+}
+
 stepOneForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
@@ -142,6 +164,7 @@ stepOneForm.addEventListener("submit", (e) => {
 stepTwoForm.addEventListener("submit", (e) => e.preventDefault());
 stepThreeForm.addEventListener("submit", (e) => e.preventDefault());
 
+//Step two
 stepTwoNextButton.addEventListener("click", () => {
   sectionTwoElement.style.display = "none";
   sectionThreeElement.style.display = "block";
@@ -155,7 +178,7 @@ stepTwoBackButton.addEventListener("click", () => {
   stepTwoNumber.classList.remove("active");
   stepOneNumber.classList.add("active");
 });
-
+console.log(stepTwoBackButton);
 //Step three
 stepThreeNextButton.addEventListener("click", () => {
   sectionThreeElement.style.display = "none";
@@ -167,11 +190,24 @@ stepThreeNextButton.addEventListener("click", () => {
   setTotal();
 });
 
-stepTwoBackButton.addEventListener("click", () => {
+stepThreeBackButton.addEventListener("click", () => {
   sectionThreeElement.style.display = "none";
   sectionTwoElement.style.display = "flex";
   stepThreeNumber.classList.remove("active");
   stepTwoNumber.classList.add("active");
+});
+
+//Step four
+stepFourNextButton.addEventListener("click", () => {
+  sectionFourElement.style.display = "none";
+  thankElement.style.display = "flex";
+});
+
+stepFourBackButton.addEventListener("click", () => {
+  sectionFourElement.style.display = "none";
+  sectionThreeElement.style.display = "block";
+  stepFourNumber.classList.remove("active");
+  stepThreeNumber.classList.add("active");
 });
 
 function showSelectedPlan() {
@@ -210,6 +246,7 @@ function setTotal() {
     val += Number(res);
   }
   total.innerHTML = `$${val + Number(res)}/${time ? "yr" : "mo"}`;
+  totalTitle.innerHTML = `Total (${time ? "per year" : "per month"})`;
 }
 
 function setTime(t) {
