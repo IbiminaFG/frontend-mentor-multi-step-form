@@ -1,11 +1,11 @@
-#step-four {
+#step-4 {
   min-width: 600px;
   padding: 40px 90px;
   display: none;
   flex-direction: column;
 }
 
-#step-four h1 {
+#step-4 h1 {
   margin-bottom: 5px;
 }
 
@@ -29,6 +29,10 @@ div.bg {
   align-items: center;
 }
 
+template {
+  display: flex;
+}
+
 .selected-pick-add-ons > div > p:nth-child(2) {
   color: var(--Marine-blue);
 }
@@ -39,7 +43,7 @@ div.bg {
   align-items: center;
 }
 
-#step-four h3 {
+#step-4 h3 {
   font-family: ubuntu-medium;
   color: var(--Purplish-blue);
 }

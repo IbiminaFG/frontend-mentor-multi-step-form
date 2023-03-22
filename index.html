@@ -73,7 +73,7 @@
 
     <section class="steps">
 
-      <section id="step-one">
+      <section id="step-1" class="stp">
         <form>
           <!-- Step 1 start -->
 
@@ -109,7 +109,7 @@
             </div>
 
             <div class="btn">
-              <button type="submit">Next Step</button>
+              <button type="submit" class="next-step">Next Step</button>
             </div>
 
 
@@ -121,7 +121,7 @@
       <!-- Step 1 end -->
 
       <!-- Step 2 start -->
-      <section id="step-two">
+      <section id="step-2" class="stp">
         <div class="info">
           <h1>Select your plan</h1>
           <p>You have the option of monthly or yearly billing.</p>
@@ -166,14 +166,14 @@
       <!-- Step 2 end -->
 
       <!-- Step 3 start -->
-      <section id="step-three">
+      <section id="step-3" class="stp">
         <div class="info">
           <h1>Pick add-ons</h1>
           <p>Add-ons help enhance your gaming experience.</p>
         </div>
         <form>
           <div class="checkboxes">
-            <div class="add-on">
+            <div class="add-on" data-id="1">
               <input type="checkbox" name="online-service" id="online-service">
               <div>
                 <h4 class="add-on-name">Online service</h4>
@@ -181,7 +181,7 @@
               </div>
               <p class="add-on-price">+$1/mo</p>
             </div>
-            <div class="add-on">
+            <div class="add-on" data-id="2">
               <input type="checkbox" name="larger-storage" id="larger-storage">
               <div>
                 <h4 class="add-on-name">Larger storage</h4>
@@ -189,7 +189,7 @@
               </div>
               <p class="add-on-price">+$2/mo</p>
             </div>
-            <div class="add-on">
+            <div class="add-on" data-id="3">
               <input type="checkbox" name="customizable-profile" id="customizable-profile">
               <div>
                 <h4 class="add-on-name">Customizable Profile</h4>
@@ -206,7 +206,7 @@
       </section>
       <!-- Step 3 end -->
       <!-- Step 4 start -->
-      <section id="step-four">
+      <section id="step-4" class="stp">
         <div class="info">
           <h1>Finishing up</h1>
           <p>Double-check everything looks OK before confirming.</p>
@@ -214,14 +214,20 @@
         <!-- Dynamically add subscription and add-on selections here -->
         <div class="p-20 bg">
           <div class="selected-plan">
-            <!-- <div>
-              <h4>Arcade(Monthly)</h4>
+            <div>
+              <h4 class="selected-plan-name">Arcade(Monthly)</h4>
               <a href="#">change</a>
             </div>
-            <h4>$9/mo</h4> -->
+            <h4 class="selected-plan-price">$9/mo</h4>
           </div>
           <hr>
           <div class="selected-pick-add-ons">
+            <template class="template">
+              <div class="selected-addon">
+                <p class="shown-addon-name">Online AddOn</p>
+                <p class="shown-addon-price">$9/mo</p>
+              </div>
+            </template>
           </div>
         </div>
         <div class="total p-20">
@@ -234,7 +240,7 @@
         </div>
       </section>
       <!-- Step 4 end -->
-      <section id="thank-you">
+      <section id="step-5" class="stp">
         <div>
           <img src="./assets/images/icon-thank-you.svg" alt="thank-you">
           <h1>Thank you!</h1>

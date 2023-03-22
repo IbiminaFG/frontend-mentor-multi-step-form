@@ -1,28 +1,40 @@
-const stepOneForm = document.querySelector("#step-one form");
-const stepOneInputs = document.querySelectorAll("#step-one input");
+//Trying to fix code
+const steps = document.querySelectorAll(".stp");
+const circleSteps = document.querySelectorAll(".step");
+const planCards = document.querySelectorAll(".plan-card");
+const addOnElements = document.querySelectorAll(".add-on");
+const total = document.querySelector(".total h3");
+const totalTitle = document.querySelector(".total p");
+const selectedPlanPrice = document.querySelector(".selected-plan-price");
+const forms = document.querySelectorAll("form");
+const stepOneFormInputs = document.querySelectorAll("#step-1 form input");
+//End of trying to fix code
 
-const stepTwoForm = document.querySelector("#step-two form");
-const stepTwoNextButton = document.querySelector("#step-two .next-step");
-const stepTwoBackButton = document.querySelector("#step-two .back");
+const stepOneForm = document.querySelector("#step-1 form");
+const stepOneInputs = document.querySelectorAll("#step-1 input");
 
-const stepThreeForm = document.querySelector("#step-three form");
-const stepThreeNextButton = document.querySelector("#step-three .next-step");
-const stepThreeBackButton = document.querySelector("#step-three .back");
+// const stepTwoForm = document.querySelector("#step-two form");
+// const stepTwoNextButton = document.querySelector("#step-two .next-step");
+// const stepTwoBackButton = document.querySelector("#step-two .back");
 
-const stepFourNextButton = document.querySelector("#step-four .next-step");
-const stepFourBackButton = document.querySelector("#step-four .back");
+// const stepThreeForm = document.querySelector("#step-three form");
+// const stepThreeNextButton = document.querySelector("#step-three .next-step");
+// const stepThreeBackButton = document.querySelector("#step-three .back");
+
+// const stepFourNextButton = document.querySelector("#step-four .next-step");
+// const stepFourBackButton = document.querySelector("#step-four .back");
 
 //The different inputs in step-one-form
-const stepOneNameInput = document.querySelector("#step-one #name");
-const stepOneEmailInput = document.querySelector("#step-one #email");
-const stepOnePhoneInput = document.querySelector("#step-one #phone");
+const stepOneNameInput = document.querySelector("#step-1 #name");
+const stepOneEmailInput = document.querySelector("#step-1 #email");
+const stepOnePhoneInput = document.querySelector("#step-1 #phone");
 
 //The different section elements
-const sectionOneElement = document.querySelector("#step-one");
-const sectionTwoElement = document.querySelector("#step-two");
-const sectionThreeElement = document.querySelector("#step-three");
-const sectionFourElement = document.querySelector("#step-four");
-const thankElement = document.querySelector("#thank-you");
+const sectionOneElement = document.querySelector("#step-1");
+const sectionTwoElement = document.querySelector("#step-2");
+const sectionThreeElement = document.querySelector("#step-3");
+const sectionFourElement = document.querySelector("#step-4");
+const thankElement = document.querySelector("#step-5");
 
 //Aside step
 const stepOneNumber = document.querySelector(".step1 .sn");
@@ -31,13 +43,11 @@ const stepThreeNumber = document.querySelector(".step3 .sn");
 const stepFourNumber = document.querySelector(".step4 .sn");
 
 //plancard elements
-const planCards = document.querySelectorAll(".plan-card");
 
 //slider element
 const sliderElement = document.querySelector(".slider");
 
 //add-on elements
-const addOnElements = document.querySelectorAll(".add-on");
 
 const selectedPlanToShow = document.querySelector(".selected-plan");
 const selectedAddOnToShow = document.querySelector(".selected-pick-add-ons");
@@ -46,16 +56,89 @@ const selectedAddOnToShow = document.querySelector(".selected-pick-add-ons");
 const planPrice = document.querySelector(".plan-price");
 
 //total
-const total = document.querySelector(".total h3");
-const totalTitle = document.querySelector(".total p");
 
 const planDetails = {
   plan: "Arcade",
-  kind: "monthly",
+  kind: false,
   price: "$9/mo",
 };
 let val = false;
-let t;
+let time;
+let currentStep = 1;
+let currentCircle = 0;
+
+forms.forEach((form) => {
+  form.addEventListener("submit", (e) => e.preventDefault());
+});
+
+//Steps next and back button
+
+steps.forEach((step) => {
+  const nextBtn = step.querySelector(".next-step");
+  const prevBtn = step.querySelector(".back");
+  if (prevBtn) {
+    prevBtn.addEventListener("click", () => {
+      document.querySelector(`#step-${currentStep}`).style.display = "none";
+      currentStep--;
+      document.querySelector(`#step-${currentStep}`).style.display = "flex";
+      circleSteps[currentCircle]
+        .querySelector(".sn")
+        .classList.remove("active");
+      currentCircle--;
+      circleSteps[currentCircle].querySelector(".sn").classList.add("active");
+    });
+  }
+  if (nextBtn) {
+    nextBtn.addEventListener("click", () => {
+      document.querySelector(`#step-${currentStep}`).style.display = "none";
+      if (currentStep < 5 && validateForm()) {
+        circleSteps[currentCircle]
+          .querySelector(".sn")
+          .classList.remove("active");
+        currentStep++;
+        currentCircle++;
+        // setTotal();
+      }
+      document.querySelector(`#step-${currentStep}`).style.display = "flex";
+      circleSteps[currentCircle].querySelector(".sn").classList.add("active");
+      summary(planDetails);
+    });
+  }
+});
+
+function summary(planDetails) {
+  const planName = document.querySelector(".selected-plan-name");
+  const planPrice = document.querySelector(".selected-plan-price");
+  planPrice.innerHTML = `${planDetails.price.innerText}`;
+  planName.innerHTML = `${planDetails.plan.innerText} (${
+    planDetails.kind ? "yearly" : "monthly"
+  })`;
+}
+
+function validateForm() {
+  let valid = true;
+  for (let i = 0; i < stepOneFormInputs.length; i++) {
+    if (!stepOneFormInputs[i].value) {
+      valid = false;
+      stepOneFormInputs[i].classList.add("err");
+      findLabel(stepOneFormInputs[i]).nextElementSibling.style.visibility =
+        "visible";
+    } else {
+      valid = true;
+      stepOneFormInputs[i].classList.remove("err");
+      findLabel(stepOneFormInputs[i]).nextElementSibling.style.visibility =
+        "hidden";
+    }
+  }
+  return valid;
+}
+function findLabel(el) {
+  const idVal = el.id;
+  const labels = document.getElementsByTagName("label");
+  for (let i = 0; i < labels.length; i++) {
+    if (labels[i].htmlFor == idVal) return labels[i];
+  }
+}
 
 //plancards
 
@@ -65,8 +148,8 @@ planCards.forEach((plan) => {
     plan.classList.add("active-plan");
     const planName = plan.querySelector("h4");
     const planPrice = plan.querySelector("p");
-    planDetails.plan = planName.innerText;
-    planDetails.price = planPrice.innerText;
+    planDetails.plan = planName;
+    planDetails.price = planPrice;
   });
 });
 
@@ -94,15 +177,40 @@ sliderElement.addEventListener("click", () => {
 addOnElements.forEach((addon) => {
   addon.addEventListener("click", () => {
     let checkedValue = addon.querySelector("input");
+    const ID = addon.getAttribute("data-id");
     if (checkedValue.checked) {
       addon.classList.add("picked");
       checkedValue = false;
+      showAddon(addon, true);
     } else {
       addon.classList.remove("picked");
       checkedValue = true;
+      showAddon(ID, false);
     }
   });
 });
+
+function showAddon(ad, val) {
+  const temp = document.getElementsByTagName("template")[0];
+  const clone = temp.content.cloneNode(true);
+  const serviceName = clone.querySelector(".shown-addon-name");
+  const servicePrice = clone.querySelector(".shown-addon-price");
+  const serviceID = clone.querySelector(".selected-addon");
+  if (ad && val) {
+    serviceName.innerText = ad.querySelector(".add-on-name").innerText;
+    servicePrice.innerText = ad.querySelector(".add-on-price").innerText;
+    serviceID.setAttribute("data-id", ad.dataset.id);
+    document.querySelector(".selected-pick-add-ons").appendChild(clone);
+  } else {
+    const addons = document.querySelectorAll(".selected-addon");
+    addons.forEach((addon) => {
+      const attr = addon.getAttribute("data-id");
+      if (attr == ad) {
+        addon.remove();
+      }
+    });
+  }
+}
 
 function switchPrice(v) {
   const yearlyPrice = [90, 120, 150];
@@ -138,97 +246,12 @@ function switchAddOns(v) {
   }
 }
 
-stepOneForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-
-  stepOneInputs.forEach((input) => {
-    if (input.value == "") {
-      input.parentElement.classList.add("un-hide");
-    } else {
-      input.parentElement.classList.remove("un-hide");
-    }
-  });
-
-  if (
-    stepOneNameInput.value &&
-    stepOneEmailInput.value &&
-    stepOnePhoneInput.value
-  ) {
-    sectionOneElement.style.display = "none";
-    sectionTwoElement.style.display = "flex";
-    stepOneNumber.classList.remove("active");
-    stepTwoNumber.classList.add("active");
-  }
-});
-
-stepTwoForm.addEventListener("submit", (e) => e.preventDefault());
-stepThreeForm.addEventListener("submit", (e) => e.preventDefault());
-
-//Step two
-stepTwoNextButton.addEventListener("click", () => {
-  sectionTwoElement.style.display = "none";
-  sectionThreeElement.style.display = "block";
-  stepTwoNumber.classList.remove("active");
-  stepThreeNumber.classList.add("active");
-});
-
-stepTwoBackButton.addEventListener("click", () => {
-  sectionTwoElement.style.display = "none";
-  sectionOneElement.style.display = "block";
-  stepTwoNumber.classList.remove("active");
-  stepOneNumber.classList.add("active");
-});
-console.log(stepTwoBackButton);
-//Step three
-stepThreeNextButton.addEventListener("click", () => {
-  sectionThreeElement.style.display = "none";
-  sectionFourElement.style.display = "flex";
-  stepThreeNumber.classList.remove("active");
-  stepFourNumber.classList.add("active");
-  showSelectedPlan();
-  showSelectedAddOns();
-  setTotal();
-});
-
-stepThreeBackButton.addEventListener("click", () => {
-  sectionThreeElement.style.display = "none";
-  sectionTwoElement.style.display = "flex";
-  stepThreeNumber.classList.remove("active");
-  stepTwoNumber.classList.add("active");
-});
-
-//Step four
-stepFourNextButton.addEventListener("click", () => {
-  sectionFourElement.style.display = "none";
-  thankElement.style.display = "flex";
-});
-
-stepFourBackButton.addEventListener("click", () => {
-  sectionFourElement.style.display = "none";
-  sectionThreeElement.style.display = "block";
-  stepFourNumber.classList.remove("active");
-  stepThreeNumber.classList.add("active");
-});
-
 function showSelectedPlan() {
   selectedPlanToShow.innerHTML = `<div>
   <h4>${planDetails.plan}(${planDetails.kind})</h4>
   <a href="#">change</a>
 </div>
 <h4 class="plan-price">${planDetails.price}</h4>`;
-}
-
-function showSelectedAddOns() {
-  const pickedAddOns = document.querySelectorAll(".picked");
-  pickedAddOns.forEach((addOn) => {
-    const addOnName = addOn.querySelector(".add-on-name").innerText;
-    const addOnPrice = addOn.querySelector(".add-on-price").innerText;
-    selectedAddOnToShow.innerHTML += `
-    <div>
-      <p>${addOnName}</p>
-      <p class="shown-add-on-price">${addOnPrice}</p>
-    </div>`;
-  });
 }
 
 function setTotal() {

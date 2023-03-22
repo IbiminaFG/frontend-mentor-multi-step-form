@@ -1,14 +1,15 @@
-#step-three {
+#step-3 {
   min-width: 600px;
   padding: 40px 90px;
   display: none;
+  flex-direction: column;
 }
 
-#step-three > form {
+#step-3 > form {
   height: 410px;
 }
 
-#step-three h1 {
+#step-3 h1 {
   margin-bottom: 5px;
 }
 
@@ -47,6 +48,6 @@
   margin: 0;
 }
 
-#step-three > form > .inputs {
+#step-3 > form > .inputs {
   margin-top: auto;
 }

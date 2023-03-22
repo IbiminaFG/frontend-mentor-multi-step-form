@@ -1,4 +1,4 @@
-#step-two {
+#step-2 {
   min-width: 600px;
   padding: 40px 90px;
   display: none;
@@ -6,7 +6,7 @@
   justify-content: space-between;
 }
 
-#step-two h1 {
+#step-2 h1 {
   margin-bottom: 5px;
 }
 
@@ -19,7 +19,7 @@ form {
   flex-direction: column;
 }
 
-#step-two > form {
+#step-2 > form {
   height: 410px;
 }
 

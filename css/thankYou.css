@@ -1,4 +1,4 @@
-#thank-you {
+#step-5 {
   width: 600px;
   padding: 40px 90px;
   display: none;
@@ -6,7 +6,7 @@
   align-items: center;
 }
 
-#thank-you > div {
+#step-5 > div {
   display: flex;
   flex-direction: column;
   justify-content: center;
