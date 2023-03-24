@@ -97,7 +97,7 @@ steps.forEach((step) => {
           .classList.remove("active");
         currentStep++;
         currentCircle++;
-        // setTotal();
+        setTotal();
       }
       document.querySelector(`#step-${currentStep}`).style.display = "flex";
       circleSteps[currentCircle].querySelector(".sn").classList.add("active");
@@ -169,7 +169,7 @@ sliderElement.addEventListener("click", () => {
   const planKind = document.querySelector(".active-slide");
   switchPrice(val);
   switchAddOns(val);
-  planDetails.kind = planKind.innerText;
+  planDetails.kind = val;
 });
 
 //add-on functionality
@@ -246,19 +246,19 @@ function switchAddOns(v) {
   }
 }
 
-function showSelectedPlan() {
-  selectedPlanToShow.innerHTML = `<div>
-  <h4>${planDetails.plan}(${planDetails.kind})</h4>
-  <a href="#">change</a>
-</div>
-<h4 class="plan-price">${planDetails.price}</h4>`;
-}
+// function showSelectedPlan() {
+//   selectedPlanToShow.innerHTML = `<div>
+//   <h4>${planDetails.plan}(${planDetails.kind})</h4>
+//   <a href="#">change</a>
+// </div>
+// <h4 class="plan-price">${planDetails.price}</h4>`;
+// }
 
 function setTotal() {
-  const str = planDetails.price;
+  const str = selectedPlanPrice.innerHTML;
   const res = str.replace(/\D/g, "");
   const addonPrices = document.querySelectorAll(
-    ".selected-pick-add-ons .shown-add-on-price"
+    ".selected-pick-add-ons .shown-addon-price"
   );
 
   let val = 0;
